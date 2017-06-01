@@ -57,6 +57,7 @@ set(EXAMPLEB2A_SCRIPTS
   run2.mac
   init_vis.mac
   vis.mac
+  Run.mac
   )
 
 foreach(_script ${EXAMPLEB2A_SCRIPTS})
