@@ -109,8 +109,9 @@ int main(int argc,char** argv)
     ui->SessionStart();
     delete ui;
   }
-
-  EffHisto->SaveAs("test.C");
+  EffHisto->SaveAs(Form("%s_Energy%s.C",UImanager->GetCurrentStringValue("/gun/particle").data(),
+		  UImanager->GetCurrentStringValue("/gun/energy").data()
+		  ));
   // Job termination
   // Free the store: user actions, physics_list and detector_description are
   // owned and deleted by the run manager, so they should not be deleted

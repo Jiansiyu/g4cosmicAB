@@ -68,17 +68,24 @@ void MuonTrackerSD::EndOfEvent(G4HCofThisEvent*)
 {
 	TotalEvents++;
 	G4int nofHits = fHitsCollection->entries();
-	if(nofHits)DetectoredEvents++;
+	//if(nofHits)DetectoredEvents++;
+
+
+	G4bool detected_flag=0; // if detected mu+ set this to be 1
+	for (G4int i = 0; i < nofHits; i++) {
+		if (verboseLevel > 1)(*fHitsCollection)[i]->Print();
+		if((*fHitsCollection)[i]->GetParticleName()=="mu+")detected_flag=1;
+
+	}
+	if(detected_flag){
+		DetectoredEvents++;
+		detected_flag=0;
+	}
+
 	float ratio=(DetectoredEvents/TotalEvents);
 	G4cout<<std::setw(8)<<ratio*100<<"%\r"<<std::flush;
 	EffHisto->Fill(TotalEvents,ratio);
 	EffHisto->GetXaxis()->SetRange(0,TotalEvents);
 	EffHisto->SetBins(TotalEvents,0,TotalEvents);
 
-	if (verboseLevel > 1) {
-		for (G4int i = 0; i < nofHits; i++) {
-			(*fHitsCollection)[i]->Print();
-
-		}
-	}
 }
