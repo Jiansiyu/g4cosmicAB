@@ -71,6 +71,8 @@ private:
 	G4Material* fTargetMaterials_Cu;
 	G4Material* fTargetMaterials_Pu;
 	G4Material* fTargetMaterials_U;        //Uranium
+	G4Material* fTargetMaterials_U238;        //Uranium
+
 
 
 

@@ -36,7 +36,7 @@ MuonTrackerHit::MuonTrackerHit(const MuonTrackerHit& right): G4VHit(){
 
 MuonTrackerHit::~MuonTrackerHit() {
 	// TODO Auto-generated destructor stub
-};
+}
 
 const MuonTrackerHit& MuonTrackerHit::operator =(const MuonTrackerHit & right){
 	fTrackID   = right.fTrackID;

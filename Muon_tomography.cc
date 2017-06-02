@@ -49,7 +49,6 @@ int main(int argc,char** argv)
 
 
 	//+++++++++++++++++++++++++
-
 	EffHisto=new TH1F("Infor ","Percentage_of_Particle_Detected", 100, 0, 5000);
 	EffHisto->GetXaxis()->SetTitle("# Events");
 	EffHisto->GetYaxis()->SetTitle("Detected/TotalEvents");
@@ -65,9 +64,9 @@ int main(int argc,char** argv)
   // Choose the Random engine
   G4Random::setTheEngine(new CLHEP::RanecuEngine);
 
-  // Construct the default run manager
+// Construct the default run manager
 //#ifdef G4MULTITHREADED
-//  G4MTRunManager* runManager = new G4MTRunManager;
+//G4MTRunManager* runManager = new G4MTRunManager;
 //#else
   G4RunManager* runManager = new G4RunManager;
 //#endif
@@ -109,9 +108,13 @@ int main(int argc,char** argv)
     ui->SessionStart();
     delete ui;
   }
+
   EffHisto->SaveAs(Form("%s_Energy%s.C",UImanager->GetCurrentStringValue("/gun/particle").data(),
 		  UImanager->GetCurrentStringValue("/gun/energy").data()
 		  ));
+
+  G4cout<<"Percentage remains :"<<DetectoredEvents*100.0/TotalEvents<<"%"<<G4endl;
+
   // Job termination
   // Free the store: user actions, physics_list and detector_description are
   // owned and deleted by the run manager, so they should not be deleted

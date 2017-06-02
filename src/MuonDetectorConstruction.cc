@@ -91,14 +91,17 @@ void MuonDetectorConstruction::DefineMaterials(){
 	fMaterials_3CO2_7Ar->AddMaterial(material_n,70*perCent);
 
 	// build the materials for the target
-	fTargetMaterials_Al = nistManager->FindOrBuildMaterial("G4_Al");
-	fTargetMaterials_Pb = nistManager->FindOrBuildMaterial("G4_Pb");
-	fTargetMaterials_Bi = nistManager->FindOrBuildMaterial("G4_Bi");
-	fTargetMaterials_Fe = nistManager->FindOrBuildMaterial("G4_Fe");
-	fTargetMaterials_Cu = nistManager->FindOrBuildMaterial("G4_Cu");
-	fTargetMaterials_Pu = nistManager->FindOrBuildMaterial("G4_Pu");
-	fTargetMaterials_U  = nistManager->FindOrBuildMaterial("G4_U");
-
+	fTargetMaterials_Al   = nistManager->FindOrBuildMaterial("G4_Al");
+	fTargetMaterials_Pb   = nistManager->FindOrBuildMaterial("G4_Pb");
+	fTargetMaterials_Bi   = nistManager->FindOrBuildMaterial("G4_Bi");
+	fTargetMaterials_Fe   = nistManager->FindOrBuildMaterial("G4_Fe");
+	fTargetMaterials_Cu   = nistManager->FindOrBuildMaterial("G4_Cu");
+	fTargetMaterials_Pu   = nistManager->FindOrBuildMaterial("G4_Pu");
+	fTargetMaterials_U    = nistManager->FindOrBuildMaterial("G4_U");
+	G4double a;
+	G4double z;
+	G4double density;
+	fTargetMaterials_U238 = new G4Material("U238",z=92.,a=238.05*g/mole,density=19.1*g/cm3);
 	//build the detector materials
 	fChamberMaterials_Cu    = nistManager->FindOrBuildMaterial("G4_Cu");
 	fChamberMaterials_Myler = nistManager->FindOrBuildMaterial("G4_MYLAR");
@@ -167,7 +170,7 @@ void MuonDetectorConstruction::DefineMaterials(){
 
 	G4Sphere* TestSPhere1= new G4Sphere("TestSphere1",sphere_pRmin,sphere_pRmax,sphere_Phi_start,sphere_Phi_end,sphere_Theta_start,sphere_Theta_end);
 	fLogicTarget = new G4LogicalVolume(TestSPhere1,
-			fTargetMaterials_U,
+			fTargetMaterials_U238,
 			"target_log"
 			);
 	fPhysicTarget =
