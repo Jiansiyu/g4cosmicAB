@@ -27,11 +27,11 @@ git clone https://github.com/Jiansiyu/cmake_geant4.git
 cp cmake_geant4/cmake_geant4.sh ./
 ./cmake_geant4.sh 4.10.03.p01
 ```
-'''
+```
 mkdir root
 git clone https://github.com/Jiansiyu/installROOTsource.git
 the following steps are listed in the readme files
-'''
+```
 
 
 Ubuntu
