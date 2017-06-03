@@ -1,7 +1,7 @@
-# cosmic absorbtion G4 simulation Toy
+# cosmic absorption G4 simulation Toy
 
 
-> A small toy that used for simulate the cosmic absorbtion in U238
+> A small toy that used for simulate the cosmic absorption in U238
 
 
 ![](example.jpg)
