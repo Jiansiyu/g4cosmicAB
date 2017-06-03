@@ -14,8 +14,8 @@ The Program is write and tested in UBUNTU 16.04
 * [Geant4.10.03.p01](https://geant4.web.cern.ch)
 
 To install ROOT AND Geant4
-	You can use the small scrapt to install the grant4 and root if you didnot install those packages
-	it will downloads and install and compile Geant4 automaticly
+	You can use the small scrapt to install the grant4 and root if you didnot install those packages.
+	It will downloads and install and compile Geant4 automaticly
 ```
 mkdir ROOT
 cd ROOT
@@ -51,6 +51,7 @@ You can simply change:
 * etc...
 
 After you change the configure, simply run 
+
 ```
 root -l macros.C
 ```
