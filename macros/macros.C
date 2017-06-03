@@ -43,7 +43,7 @@ void macros() {
 	string batchmodename="batch.bh";
 	ofstream bachio;
 	bachio.open(batchmodename.c_str());
-	bachio<<"#"<<StartEnergy<<", "<<EndEnergy<<", "<<Steps<<endl;
+	bachio<<StartEnergy<<", "<<EndEnergy<<", "<<Steps<<endl;
 	bachio<<"############################################"<<endl;
 	bachio<<"#   Auto Generated Batch Mode Run File"<<endl;
 	bachio<<"# !!!!!!! Caution when Changing it !!!!!"<<endl;

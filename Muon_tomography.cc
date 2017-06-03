@@ -98,10 +98,28 @@ int main(int argc,char** argv)
   if ( ! ui ) { 
 	std::string inputfilename(argv[1]);
 	if(inputfilename.substr(inputfilename.find_last_of(".")+1)=="bh"){
+		TH1F *EnergyScanHisto;
 
-		//TH1F *EnergyScanHisto=new TH1F("","");
 		ifstream inputbachname(inputfilename.c_str());
 		std::string singlelineMacFilename;
+		// read the first line and configure the histogram
+		std::string configurations;
+		std::getline(inputbachname,configurations);
+		configurations.erase( remove_if(configurations.begin(), configurations.end(), ::isspace), configurations.end() );
+		char *tokens=std::strtok( (char *)configurations.data(), ",");
+
+		float startenergy;
+		float endenergy;
+		int steps;
+		if(tokens!=NULL){
+			startenergy=std::atof(tokens);
+			tokens=std::strtok(NULL,",");
+			endenergy=std::atof(tokens);
+			tokens=std::strtok(NULL,",");
+			steps=std::atoi(tokens);
+			//printf("\n\n\n************\n start: %f\n end:%f\n steps:%d\n*******************\n\n",startenergy,endenergy,steps);
+			EnergyScanHisto=new TH1F(Form("E_infor"),Form("Energy_Scan_%f_to_%f_step_%d",startenergy,endenergy,steps),steps,startenergy,endenergy);
+		}
 		while(std::getline(inputbachname,singlelineMacFilename)){
 			// initialize the data
 			TotalEvents=0;
@@ -115,7 +133,7 @@ int main(int argc,char** argv)
 				G4cout<<fileName<<G4endl;
 				UImanager->ApplyCommand(command+fileName);
 				G4cout<<"Percentage remains :"<<DetectoredEvents*100.0/TotalEvents<<"%"<<G4endl;
-
+				EnergyScanHisto->Fill(UImanager->GetCurrentStringValue("/gun/energy").data(),DetectoredEvents/TotalEvents);
 				// save the graph
 				EffHisto->SaveAs(Form("Result/%s_Energy%s.C",UImanager->GetCurrentStringValue("/gun/particle").data(),
 						  UImanager->GetCurrentStringValue("/gun/energy").data()
@@ -123,7 +141,9 @@ int main(int argc,char** argv)
 			}
 
 		}
-
+		EnergyScanHisto->SaveAs(Form("%s_Energy_Scan_%f_to_%f_step_%d.C",UImanager->GetCurrentStringValue("/gun/particle").data(),
+				startenergy,endenergy,steps
+		));
 
 	}else {
 		G4cout<<".mac file detected"<<G4endl;
