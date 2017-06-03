@@ -49,6 +49,7 @@ You can simply change:
 * Scan Steps
 * Units of Energy
 * etc...
+
 After you change the configure, simply run 
 ```
 root -l macros.C
