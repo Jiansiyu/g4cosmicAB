@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <unistd.h>
 using namespace std;
 
 
@@ -17,7 +18,13 @@ string Particlename="mu+";
 
 string GenerateFilename(string name,float Energy,int Events) {
 std::ostringstream oss;
-oss << name.c_str()<<"_Energy"<<Energy<<"_events"<<Events<<".mac";
+char cwd[1024];
+if(getcwd(cwd,sizeof(cwd))!==NULL){
+oss << cwd<<"/"<<name.c_str()<<"_Energy"<<Energy<<"_events"<<Events<<".mac";
+   
+   }else{
+   oss <<name.c_str()<<"_Energy"<<Energy<<"_events"<<Events<<".mac";
+   }
    return oss.str();
 }
 

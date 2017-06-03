@@ -35,6 +35,11 @@
 #include <TCanvas.h>
 
 
+// used for get the externtion of the input filename
+#include "iostream"
+#include "string"
+#include "fstream"
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -94,10 +99,23 @@ int main(int argc,char** argv)
 
   // Process macro or start UI session
   if ( ! ui ) { 
-    // batch mode
-    G4String command = "/control/execute ";
-    G4String fileName = argv[1];
-    UImanager->ApplyCommand(command+fileName);
+	std::string inputfilename(argv[1]);
+	if(inputfilename.substr(inputfilename.find_last_of(".")+1)=="bh"){
+		ifstream inputbachname(inputfilename.c_str());
+		char singlelinemacfilename[1024];
+		while(inputbachname){
+			inputbachname.getline(singlelinemacfilename,1024);
+			G4cout<<singlelinemacfilename<<G4endl;
+		}
+
+
+	}else {
+		G4cout<<".mac file detected"<<G4endl;
+		// batch mode
+	    G4String command = "/control/execute ";
+	    G4String fileName = argv[1];
+	    UImanager->ApplyCommand(command+fileName);
+	}
   }
   else { 
     // interactive mode
