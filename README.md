@@ -1,14 +1,9 @@
 # cosmic absorbtion G4 simulation Toy
 > A small toy that used for simulate the cosmic absorbtion in U238
 
-[![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
 
 ![](example.jpg)
-
-
 
 ## Installation
 
@@ -63,11 +58,19 @@ The code can run as regular Geant4 interactive GUI mode, Batch mode or Scan mode
 * generate the batch.bh files 
 	* cd macros 
 	* root -l macros.C
-	*.q (to exit root)
+	* .q (to exit root)
 * run the batch
-	* choice one, run as batch mode example: ```./Muon_tomography macros/mu+_Energy5.28_events5000.mac```
-	* Scan mode,  run as ```./Muon_tomography macros/batch.bh```
+	* choice one, run as batch mode example: 
+		```./Muon_tomography macros/mu+_Energy5.28_events5000.mac```
+	* Scan mode,  run as 
+		```./Muon_tomography macros/batch.bh```
 
 ## Result
-* The individual result will save as xxx.c file in the "Result"  direction. To check the result: ```root -l xxx.C```
-* In Scan mode, it will generate the Scan result and save in current path: To check the result: ```root -l xxx.C```
+* The individual result will save as xxx.c file in the "Result"  direction. To check the result: 
+	```root -l xxx.C```
+* In Scan mode, it will generate the Scan result and save in current path: To check the result: 
+	```root -l xxx.C```
+
+## Questions and Bug Report
+jiansiyu@gmail.com
+
