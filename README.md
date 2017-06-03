@@ -5,6 +5,7 @@
 
 
 [![Build Status][travis-image]][travis-url]
+[![Downloads Stats][npm-downloads]][npm-url]
 
 ![](example.jpg)
 
