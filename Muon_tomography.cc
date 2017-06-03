@@ -52,14 +52,6 @@ TH1F *EffHisto;
 int main(int argc,char** argv)
 {
 
-
-	//+++++++++++++++++++++++++
-	EffHisto=new TH1F("Infor ","Percentage_of_Particle_Detected", 100, 0, 5000);
-	EffHisto->GetXaxis()->SetTitle("# Events");
-	EffHisto->GetYaxis()->SetTitle("Detected/TotalEvents");
-	//+++++++++++++++++++++++++
-
-
   //Detect interactive mode (if no arguments) and define UI session
   G4UIExecutive* ui = 0;
   if ( argc == 1 ) {
@@ -97,15 +89,39 @@ int main(int argc,char** argv)
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
+
+  EffHisto=new TH1F("Infor ","Percentage_of_Particle_Detected", 100, 0, 5000);
+  			EffHisto->GetXaxis()->SetTitle("# Events");
+  			EffHisto->GetYaxis()->SetTitle("Detected/TotalEvents");
+
   // Process macro or start UI session
   if ( ! ui ) { 
 	std::string inputfilename(argv[1]);
 	if(inputfilename.substr(inputfilename.find_last_of(".")+1)=="bh"){
+
+		//TH1F *EnergyScanHisto=new TH1F("","");
 		ifstream inputbachname(inputfilename.c_str());
-		char singlelinemacfilename[1024];
-		while(inputbachname){
-			inputbachname.getline(singlelinemacfilename,1024);
-			G4cout<<singlelinemacfilename<<G4endl;
+		std::string singlelineMacFilename;
+		while(std::getline(inputbachname,singlelineMacFilename)){
+			// initialize the data
+			TotalEvents=0;
+			DetectoredEvents=0;
+			EffHisto->Clear();
+			singlelineMacFilename=singlelineMacFilename.substr(0,singlelineMacFilename.find_first_of("#")); // delete notations from the batch
+			if(singlelineMacFilename.substr(singlelineMacFilename.find_last_of(".")+1)=="mac")
+			{
+				G4String command = "/control/execute ";
+				G4String fileName =singlelineMacFilename;
+				G4cout<<fileName<<G4endl;
+				UImanager->ApplyCommand(command+fileName);
+				G4cout<<"Percentage remains :"<<DetectoredEvents*100.0/TotalEvents<<"%"<<G4endl;
+
+				// save the graph
+				EffHisto->SaveAs(Form("Result/%s_Energy%s.C",UImanager->GetCurrentStringValue("/gun/particle").data(),
+						  UImanager->GetCurrentStringValue("/gun/energy").data()
+						  ));
+			}
+
 		}
 
 
@@ -128,8 +144,8 @@ int main(int argc,char** argv)
   }
 
   EffHisto->SaveAs(Form("%s_Energy%s.C",UImanager->GetCurrentStringValue("/gun/particle").data(),
-		  UImanager->GetCurrentStringValue("/gun/energy").data()
-		  ));
+  		  UImanager->GetCurrentStringValue("/gun/energy").data()
+  		  ));
 
   G4cout<<"Percentage remains :"<<DetectoredEvents*100.0/TotalEvents<<"%"<<G4endl;
 
