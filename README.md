@@ -30,7 +30,7 @@ cp cmake_geant4/cmake_geant4.sh ./
 ```
 mkdir root
 git clone https://github.com/Jiansiyu/installROOTsource.git
-the following steps are listed in the readme files
+The following steps are listed in the readme files
 ```
 
 
@@ -51,4 +51,5 @@ make -j4
 Material of the TARGET
 The source files are located in the 'src' folder. The material of the Target can be changed in 'MuonDetectorConstruction.cc'
 
-
+The code can run as regular Geant4 interactive GUI mode, Batch mode or Scan mode
+#GUI mode
