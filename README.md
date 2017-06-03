@@ -42,13 +42,13 @@ make -j4
 ```
 ## Macros Generator
 
-In [/macros/macros.C](/macros/macros.C) is used for generate the mac files automatically
+[/macros/macros.C](/macros/macros.C) is used for generate the mac files automatically
 You can simply change:
-	* Start Energy
-	* End Energy
-	* Scan Steps
-	* Units of Energy
-	* etc...
+* Start Energy
+* End Energy
+* Scan Steps
+* Units of Energy
+* etc...
 After you change the configure, simply run 
 ```
 root -l macros.C
