@@ -119,6 +119,8 @@ int main(int argc,char** argv)
 			steps=std::atoi(tokens);
 			//printf("\n\n\n************\n start: %f\n end:%f\n steps:%d\n*******************\n\n",startenergy,endenergy,steps);
 			EnergyScanHisto=new TH1F(Form("E_infor"),Form("Energy_Scan_%f_to_%f_step_%d",startenergy,endenergy,steps),steps,startenergy,endenergy);
+			EnergyScanHisto->GetXaxis()->SetTitle("Energy");
+			EnergyScanHisto->GetYaxis()->SetTitle("Percentage Remain");
 		}
 		while(std::getline(inputbachname,singlelineMacFilename)){
 			// initialize the data
