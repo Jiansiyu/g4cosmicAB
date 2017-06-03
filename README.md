@@ -4,9 +4,6 @@
 > A small toy that used for simulate the cosmic absorbtion in U238
 
 
- [![Build Status][travis-image]][travis-url]
- [![Downloads Stats][npm-downloads]][npm-url]
-
 ![](example.jpg)
 
 ## Installation
