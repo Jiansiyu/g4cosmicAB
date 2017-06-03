@@ -1,5 +1,8 @@
 # cosmic absorbtion G4 simulation Toy
+
+
 > A small toy that used for simulate the cosmic absorbtion in U238
+
 
 [![Build Status][travis-image]][travis-url]
 
@@ -47,13 +50,13 @@ Material of the TARGET
 The source files are located in the 'src' folder. The material of the Target can be changed in 'MuonDetectorConstruction.cc'
 
 The code can run as regular Geant4 interactive GUI mode, Batch mode or Scan mode
-##GUI mode
+### GUI mode
 ./Muon_tomography
 
-##batch mode
+### batch mode
 ./Muon_tomography  xxx.mac
 
-##Scan batch mode
+### Scan batch mode
 
 * generate the batch.bh files 
 	* cd macros 
